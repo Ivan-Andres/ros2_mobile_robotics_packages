@@ -29,6 +29,8 @@ class DistFinderAlpha(Node):
         self.hay_muro = False
         self.contador = 0
 
+        self.ciclo_transicion = 1
+
         self.get_logger().info("Nodo dist_finder_alphapy iniciado correctamente.")
 
     def getRange(self, msg: LaserScan):
@@ -67,22 +69,30 @@ class DistFinderAlpha(Node):
 
             # Calcular alpha (ángulo de orientación)
             alpha = math.atan2((a * math.cos(math.radians(theta)) - b), (a * math.sin(math.radians(theta))))
-            alpha2 = -math.atan2((a2 * math.cos(math.radians(theta)) - b2), (a2 * math.sin(math.radians(theta))))
+            alpha2 = math.atan2((a2 * math.cos(math.radians(theta)) - b2), (a2 * math.sin(math.radians(theta))))
             # Calcular distancia al muro
             distancia_muro = b * math.cos(alpha)
             distancia_muro2 = b2 * math.cos(alpha2)
+
+            # Calcular distancia al muro futura
+            distancia_muro_2 = distancia_muro + self.desplazamiento * math.sin(alpha)
+            distancia_muro_22 = distancia_muro2 + self.desplazamiento * math.sin(alpha2)
 
             self.get_logger().info(
                 f"a: {a:.2f}, b: {b:.2f}, alpha: {math.degrees(alpha):.2f} grados, "
                 f"a2: {a2:.2f}, b2: {b2:.2f}, alpha2: {math.degrees(alpha2):.2f} grados, "
             )
 
-            if ((distancia_muro2 > 3.0 and distancia_muro2 < 4.0 and self.contador >=200) and (not(self.hay_muro))):
-               self.hay_muro = False
+            self.get_logger().info(
+                    f"distancia al muro derecho: {distancia_muro:.2f} , distancia al muro derecho futura: {distancia_muro_2:.2f} "
+                    f"distancia al muro izquierdo: {distancia_muro2:.2f} , distancia al muro izquierdo futura: {distancia_muro_22:.2f} "
+                )
+
+            if ((distancia_muro2 > 3.0 and distancia_muro2 < 4.0 and self.contador >=180) and (not(self.hay_muro))):
+               self.hay_muro = True
+               self.setpoint_transicion = distancia_muro2
 
             if (not(self.hay_muro)):
-                # Calcular distancia al muro futura
-                distancia_muro_2 = distancia_muro + self.desplazamiento * math.sin(alpha)
 
                 # Calcular el error
                 error = (self.setpoint - distancia_muro_2)
@@ -99,36 +109,24 @@ class DistFinderAlpha(Node):
                     # Publicar el mensaje
                     self.publisher.publish(msg_out)
 
-                    # Registrar valores calculados
-                self.get_logger().info(
-                    f"distancia al muro derecho: {distancia_muro:.2f} , distancia al muro derecho futura: {distancia_muro_2:.2f} , contador: {self.contador:.2f}"
-                )
             elif ((self.hay_muro)):
-                # Calcular distancia al muro futura
-                distancia_muro_2 = distancia_muro2 + self.desplazamiento * math.sin(alpha2)
 
-                # Calcular el error
-                error = -(self.setpoint - distancia_muro_2)
+                self.setpoint_transicion = ((self.ciclo_transicion/600) * (self.setpoint - self.setpoint_transicion))+self.setpoint_transicion
+
+                self.ciclo_transicion += 1  # Sigue aumentando hasta 480 ciclos
+
+                error2 = -(self.setpoint_transicion - distancia_muro_22)
 
                 if ((frente < 2.0) & (distancia_muro2 < 2.0)):
                     msg_out.data = -10.0  # Publicamos distancia y ángulo en grados
 
                     # Publicar el mensaje
                     self.publisher.publish(msg_out)
-                elif(error > 5):
-                    msg_out.data = 0.5  # Publicamos distancia y ángulo en grados
-
-                    # Publicar el mensaje
-                    self.publisher.publish(msg_out)
                 else: 
-                    msg_out.data = error  # Publicamos distancia y ángulo en grados
+                    msg_out.data = error2  # Publicamos distancia y ángulo en grados
                     # Publicar el mensaje
                     self.publisher.publish(msg_out)
 
-                # Registrar valores calculados
-                self.get_logger().info(
-                    f"distancia al muro izquierdo: {distancia_muro2:.2f} m, distancia al muro izquierdo futura: {distancia_muro_2:.2f} m"
-                )
         else:
             self.get_logger().warn("Los índices calculados están fuera del rango de medición.")
 

@@ -90,10 +90,10 @@
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
     <state world_name='default'>
-      <sim_time>293 31000000</sim_time>
-      <real_time>47 91321306</real_time>
-      <wall_time>1739127144 882837603</wall_time>
-      <iterations>46523</iterations>
+      <sim_time>351 461000000</sim_time>
+      <real_time>15 374120356</real_time>
+      <wall_time>1739820535 879248813</wall_time>
+      <iterations>15021</iterations>
       <model name='demo_race_track2'>
         <pose>-0.19 2.90114 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -104,7 +104,7 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='Wall_14'>
-          <pose>-5.83108 5.17341 0 0 -0 1.5708</pose>
+          <pose>-5.81865 5.16011 0 0 -0 1.5708</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -162,7 +162,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>-3.39492 3.02755 37.1685 0 1.5138 -0.191778</pose>
+        <pose>-17.4844 10.1674 17.9779 0 0.857801 -0.459787</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
@@ -251,7 +251,7 @@
         </collision>
       </link>
       <link name='Wall_14'>
-        <pose>-5.64108 2.27227 0 0 -0 1.5708</pose>
+        <pose>-5.62865 2.25752 0 0 -0 1.5708</pose>
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>

@@ -84,7 +84,7 @@
       </collision>
     </link>
     <link name='Wall_14'>
-      <pose>-5.64108 2.27227 0 0 -0 1.5708</pose>
+      <pose>-5.62865 2.25752 0 0 -0 1.5708</pose>
       <self_collide>0</self_collide>
       <enable_wind>0</enable_wind>
       <kinematic>0</kinematic>
