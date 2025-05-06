@@ -11,7 +11,7 @@ from launch_ros.actions import Node
 def generate_launch_description():
 
     # !!! MAKE SURE YOU SET THE PACKAGE NAME CORRECTLY !!!
-    package_name='f112th_sim_2501_alpha' #<--- CHANGE ME
+    package_name='navigation' #<--- CHANGE ME
 
     joy_params = os.path.join(get_package_share_directory(package_name),'config','joystick.yaml')
 
