@@ -9,7 +9,7 @@ import math, numpy as np
 class PurePursuitNode(Node):
     def __init__(self):
         super().__init__('pure_pursuit_node')
-        self.declare_parameter('lookahead_distance', 3.0) #para vida real 0.5m, simulacion 3.0m
+        self.declare_parameter('lookahead_distance', 0.9) #para vida real 0.5m, simulacion 3.0m
         self.lookahead_distance = self.get_parameter('lookahead_distance').get_parameter_value().double_value
 
         self.declare_parameter('goal_tolerance', 0.3)
@@ -136,9 +136,9 @@ class PurePursuitNode(Node):
         normalized_steering = delta / max_steer
 
         cmd = Twist()
-        cmd.linear.x = 1.5
-        cmd.angular.z = delta
-        #cmd.angular.z = normalized_steering
+        cmd.linear.x = 0.5
+        # cmd.angular.z = delta
+        cmd.angular.z = normalized_steering
         self.cmd_vel_publisher.publish(cmd)
 
 def main(args=None):

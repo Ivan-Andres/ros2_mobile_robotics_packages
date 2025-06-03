@@ -100,64 +100,6 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        back_left_mount:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        back_left_wheel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        back_right_mount:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        back_right_wheel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        base_footprint:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        chassis:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        front_left_mount:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        front_left_wheel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        front_right_mount:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        front_right_wheel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        laser_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
       Mass Properties:
         Inertia: false
         Mass: false
@@ -171,29 +113,9 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        back_left_mount:
-          Value: true
-        back_left_wheel:
-          Value: true
-        back_right_mount:
-          Value: true
-        back_right_wheel:
-          Value: true
-        base_footprint:
-          Value: true
         base_link:
           Value: true
-        chassis:
-          Value: true
-        front_left_mount:
-          Value: true
-        front_left_wheel:
-          Value: true
-        front_right_mount:
-          Value: true
-        front_right_wheel:
-          Value: true
-        laser_frame:
+        laser:
           Value: true
         odom:
           Value: true
@@ -335,25 +257,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 25.496633529663086
+      Distance: 8.156597137451172
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 1.942591667175293
-        Y: -9.31313705444336
-        Z: 1.9695308208465576
+        X: 0.8855758309364319
+        Y: 0.6830406785011292
+        Z: 2.536903142929077
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.2647966146469116
+      Pitch: 1.4797964096069336
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.4772872924804688
+      Yaw: 0.012288819067180157
     Saved: ~
 Window Geometry:
   Displays:
@@ -371,5 +293,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 925
-  X: 959
-  Y: 34
+  X: 995
+  Y: 27

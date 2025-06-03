@@ -60,7 +60,7 @@ class AStarPlanner(Node):
         self.get_logger().warn('mapa recivido.')
         self.map = msg
         self.map_received = True
-        dilated = self.dilate_map(self.map.data, self.map.info.width, self.map.info.height, radius=15) #real 1, sim 15
+        dilated = self.dilate_map(self.map.data, self.map.info.width, self.map.info.height, radius=3) #real 1, sim 15
         self.map.data = dilated
         self.get_logger().warn('mapa leido.')
 
