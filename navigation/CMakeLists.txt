@@ -21,13 +21,14 @@ endif()
 
 # Find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(rclcpp REQUIRED)
-find_package(geometry_msgs REQUIRED)
-find_package(tf2_ros REQUIRED)
-find_package(tf2 REQUIRED)
-find_package(tf2_geometry_msgs REQUIRED)
-find_package(sensor_msgs REQUIRED)
-find_package(rosgraph_msgs REQUIRED) 
+find_package(rclcpp REQUIRED)                         # nodo base              :contentReference[oaicite:0]{index=0}
+find_package(tf2 REQUIRED)                            # cuaterniones           :contentReference[oaicite:1]{index=1}
+find_package(tf2_ros REQUIRED)                        # broadcasters TF        :contentReference[oaicite:2]{index=2}
+find_package(tf2_geometry_msgs REQUIRED)              # conversión mensajes    :contentReference[oaicite:3]{index=3}
+find_package(geometry_msgs REQUIRED)                  # Pose, TransformStamped :contentReference[oaicite:4]{index=4}
+find_package(nav_msgs REQUIRED)                       # Odometry               :contentReference[oaicite:5]{index=5}
+find_package(rosgraph_msgs REQUIRED)                  # Clock                  :contentReference[oaicite:6]{index=6}
+find_package(sensor_msgs REQUIRED)  
 
 
 if(BUILD_TESTING)
@@ -44,20 +45,25 @@ endif()
 add_executable(manual_odometry_node src/manual_odometry_node.cpp)
 ament_target_dependencies(manual_odometry_node
   rclcpp
-  geometry_msgs
   tf2
   tf2_ros
   tf2_geometry_msgs
-  sensor_msgs
+  geometry_msgs
+  nav_msgs
   rosgraph_msgs
+  sensor_msgs
 )
 
 add_executable(manual_odometry_node_slam src/manual_odometry_node_slam.cpp)
 ament_target_dependencies(manual_odometry_node_slam
   rclcpp
-  geometry_msgs
+  tf2
   tf2_ros
+  tf2_geometry_msgs
+  geometry_msgs
+  nav_msgs
   rosgraph_msgs
+  sensor_msgs
 )
 
 install(TARGETS

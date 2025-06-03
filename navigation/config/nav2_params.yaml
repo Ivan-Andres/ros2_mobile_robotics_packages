@@ -6,7 +6,7 @@ amcl:
     alpha3: 0.2
     alpha4: 0.2
     alpha5: 0.2
-    base_frame_id: "base_footprint"
+    base_frame_id: "base_link"
     beam_skip_distance: 0.5
     beam_skip_error_threshold: 0.9
     beam_skip_threshold: 0.3
@@ -14,8 +14,8 @@ amcl:
     global_frame_id: "map"
     lambda_short: 0.1
     laser_likelihood_max_dist: 2.0
-    laser_max_range: 100.0
-    laser_min_range: -1.0
+    laser_max_range: 12.0
+    laser_min_range: 0.0
     laser_model_type: "likelihood_field"
     max_beams: 60
     max_particles: 2000
@@ -37,7 +37,7 @@ amcl:
     z_max: 0.05
     z_rand: 0.5
     z_short: 0.05
-    scan_topic: scan
+    scan_topic: scan #para real scan1, sim scan
 
 bt_navigator:
   ros__parameters:
@@ -207,9 +207,9 @@ local_costmap:
         z_voxels: 16
         max_obstacle_height: 2.0
         mark_threshold: 0
-        observation_sources: scan
+        observation_sources: scan1
         scan:
-          topic: /scan
+          topic: /scan1
           max_obstacle_height: 2.0
           clearing: True
           marking: True
@@ -238,9 +238,9 @@ global_costmap:
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
-        observation_sources: scan
+        observation_sources: scan1
         scan:
-          topic: /scan
+          topic: /scan1
           max_obstacle_height: 2.0
           clearing: True
           marking: True

@@ -19,32 +19,26 @@ def generate_launch_description():
     package_name='navigation' #<--- CHANGE ME
     twist_mux_params = os.path.join(get_package_share_directory(package_name),'config','twist_mux.yaml')
     rviz_config = os.path.join(get_package_share_directory(package_name),'config','display_test_rviz.rviz')
-
-    ackerman = IncludeLaunchDescription(
-                PythonLaunchDescriptionSource([os.path.join(
-                    get_package_share_directory(package_name),'launch','acker.launch.py'
-                )]), launch_arguments={'use_sim_time': 'true', 'use_ros2_control': 'true'}.items()
-    )
     
-    joystick = IncludeLaunchDescription(
-                PythonLaunchDescriptionSource([os.path.join(
-                    get_package_share_directory(package_name),'launch','joystick.launch.py'
-                )]), launch_arguments={'use_sim_time': 'true'}.items()
-    )
+    # joystick = IncludeLaunchDescription(
+    #             PythonLaunchDescriptionSource([os.path.join(
+    #                 get_package_share_directory(package_name),'launch','joystick.launch.py'
+    #             )]), launch_arguments={'use_sim_time': 'true'}.items()
+    # )
 
     # Manual odometry node
-    manual_odom_node = Node(
+    manual_odom_node_slam = Node(
         package=package_name,
         executable='manual_odometry_node',
         name='manual_odometry_node',
         output='screen'
     )
     
-    twist_mux_node = Node(package='twist_mux', 
-                    executable='twist_mux',
-                    parameters=[twist_mux_params,{'use_sim_time': True}],
-                    remappings=[('/cmd_vel_out','/cmd_vel')]
-    )
+    # twist_mux_node = Node(package='twist_mux', 
+    #                 executable='twist_mux',
+    #                 parameters=[twist_mux_params,{'use_sim_time': True}],
+    #                 remappings=[('/cmd_vel_out','/cmd_vel')]
+    # )
 
     # RViz2 node
     rviz_node = Node(
@@ -66,10 +60,9 @@ def generate_launch_description():
 
     # Launch them all!
     return LaunchDescription([
-        ackerman,
-        joystick,
-        twist_mux_node,
-        manual_odom_node,
+        # joystick,
+        # twist_mux_node,
+        manual_odom_node_slam,
         rviz_node,
         # laser_scan_reader_node,
     ])

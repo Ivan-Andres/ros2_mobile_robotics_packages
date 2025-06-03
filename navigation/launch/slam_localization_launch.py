@@ -25,7 +25,6 @@ def generate_launch_description():
     start_localization_slam_toolbox_node = Node(
         parameters=[
           slam_params_file,
-          {'use_sim_time': use_sim_time}
         ],
         package='slam_toolbox',
         executable='localization_slam_toolbox_node',
